@@ -52,21 +52,29 @@ function isWeekday(year, month, day) {
 
 function weekdaysInMonth(year, month) {
     var countWeekdays = 0;
+    var days = daysInMonth(year, month);
 
-    for (let i = 0; i < daysInMonth(year, month); i++) {
-        if (isWeekday(year, month, i + 1))
+    for (let i = 0; i < days; i++) {
+        console.log("Y=" + year + ", M=" + month);
+        console.log(new Date(year, month, i + 1).toDateString());
+        if (isWeekday(year, month, i + 1)) {
+            console.log("its a weekday!");
             countWeekdays++;
+        }
+        else {
+            console.log("Its not a weekday");
+            }
     }
     return countWeekdays;
 }
 
 
-let year = parseInt(prompt("Please enter the year"));
-let month = parseInt(prompt("Please enter the month( e.g. January - 1, February - 2)"));
+let vYear = parseInt(prompt("Please enter the year"));
+let vMonth = parseInt(prompt("Please enter the month( e.g. January - 1, February - 2)"));
 let monthWord;
 let wage = parseInt(prompt("Please enter the hourly wage"));
 
-switch (month) {
+switch (vMonth) {
     case 1: 
         monthWord = 'January';
         break;
@@ -106,9 +114,9 @@ switch (month) {
 }
 
 document.getElementById("exerciseTwo").innerHTML = "Month: " + monthWord + "<br>"
-    + "Year: " + year + "<br>Weekdays: " + weekdaysInMonth(month+1, year)
+    + "Year: " + vYear + "<br>Weekdays: " + weekdaysInMonth(vYear, vMonth)
     + "<br>Salary: $" + wage.toFixed(2) + "<br>Pay: $"
-    + parseInt(weekdaysInMonth(month + 1, year) * wage).toFixed(2);
+    + parseInt(weekdaysInMonth(vYear, vMonth) * wage).toFixed(2);
 
 
 // Part 2
